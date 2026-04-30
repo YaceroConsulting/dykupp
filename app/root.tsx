@@ -1,16 +1,10 @@
-import {
-    Links,
-    Meta,
-    Outlet,
-    Scripts,
-    ScrollRestoration,
-} from '@remix-run/react'
-import type { LinksFunction } from '@remix-run/node'
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router'
+import type { Route } from './+types/root'
 import stylesheet from '~/tailwind.css?url'
 import { Header } from '~/components/header'
 import { Footer } from '~/components/footer'
 
-export const links: LinksFunction = () => [
+export const links: Route.LinksFunction = () => [
     { rel: 'stylesheet', href: stylesheet },
 ]
 

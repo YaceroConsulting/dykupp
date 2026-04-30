@@ -127,7 +127,9 @@ export function GroupCombobox({ name }: { name: string }) {
                     autoComplete="off"
                     onChange={(event) => setQuery(event.target.value)}
                     onBlur={() => setQuery('')}
-                    displayValue={(group: GroupName | null) => group?.name ?? ''}
+                    displayValue={(group: GroupName | null) =>
+                        group?.name ?? ''
+                    }
                     required
                 />
                 <ComboboxButton className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-hidden">

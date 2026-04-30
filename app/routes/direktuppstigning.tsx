@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
 import { checkDiveGroupAnswer, getDiveGroupQuestions } from '~/practice'
 import invariant from 'tiny-invariant'
-import type { MetaFunction } from '@remix-run/node'
+import type { Route } from './+types/direktuppstigning'
 
-export const meta: MetaFunction = () => {
+export const meta: Route.MetaFunction = () => {
     return [
         { title: 'Dyk app - Direktuppstigning' },
         {

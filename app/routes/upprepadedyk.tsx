@@ -28,7 +28,6 @@ type RepeatedDiveAnswerResult = {
 }
 
 const checkRepeatedDiveAnswer = (data: FormData): RepeatedDiveAnswerResult => {
-
     const groupAnswerCorrectFor = (name: string) =>
         String(data.get(`${name}-answer[name]`))
             .trim()
@@ -163,7 +162,9 @@ export default function UpprepadeDyk() {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        setAnswerResult(checkRepeatedDiveAnswer(new FormData(event.currentTarget)))
+        setAnswerResult(
+            checkRepeatedDiveAnswer(new FormData(event.currentTarget))
+        )
     }
 
     if (!question) {

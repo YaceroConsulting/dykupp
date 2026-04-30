@@ -1,7 +1,7 @@
-import type { MetaFunction } from '@remix-run/node'
+import type { Route } from './+types/_index'
 import { HeroWithOffsetImage } from '~/components/heroWithImage'
 
-export const meta: MetaFunction = () => {
+export const meta: Route.MetaFunction = () => {
     return [
         { title: 'Dykupp' },
         {

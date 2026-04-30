@@ -278,7 +278,6 @@ export function repeatedDives(index: number = 0): TwoDives {
     return result[index % result.length]
 }
 
-
 export type TwoDives = {
     startTime: Date
     firstDive: Dive
@@ -359,7 +358,9 @@ export class RepeatedDive {
         if (this.secondDiveMaxQuestion) {
             const diveTimeAtDepth = this.data.maxRemaining.diveTimeAtDepth
             if (diveTimeAtDepth === undefined) {
-                throw new Error('diveTimeAtDepth is required for max dive questions')
+                throw new Error(
+                    'diveTimeAtDepth is required for max dive questions'
+                )
             }
             return diveTimeAtDepth
         } else {
