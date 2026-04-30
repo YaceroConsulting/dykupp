@@ -3,6 +3,7 @@ import type { Route } from './+types/root'
 import stylesheet from '~/tailwind.css?url'
 import { Header } from '~/components/header'
 import { Footer } from '~/components/footer'
+import { publicAsset } from '~/components/libs'
 
 export const links: Route.LinksFunction = () => [
     { rel: 'stylesheet', href: stylesheet },
@@ -21,21 +22,21 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <link
                     rel="apple-touch-icon"
                     sizes="180x180"
-                    href="/dykupp/apple-touch-icon.png"
+                    href={publicAsset('apple-touch-icon.png')}
                 />
                 <link
                     rel="icon"
                     type="image/png"
                     sizes="32x32"
-                    href="/dykupp/favicon-32x32.png"
+                    href={publicAsset('favicon-32x32.png')}
                 />
                 <link
                     rel="icon"
                     type="image/png"
                     sizes="16x16"
-                    href="/dykupp/favicon-16x16.png"
+                    href={publicAsset('favicon-16x16.png')}
                 />
-                <link rel="manifest" href="/dykupp/site.webmanifest" />
+                <link rel="manifest" href={publicAsset('site.webmanifest')} />
                 <Meta />
                 <Links />
             </head>

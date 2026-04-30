@@ -1,4 +1,4 @@
-import { RemainingQuestion } from '~/practice'
+import type { RemainingQuestion } from '~/practice'
 import { useEffect, useState } from 'react'
 import { Input } from '@headlessui/react'
 import { classNames } from '~/components/libs'

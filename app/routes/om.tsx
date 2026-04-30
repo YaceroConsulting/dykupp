@@ -1,3 +1,5 @@
+import { publicAsset } from '~/components/libs'
+
 export default function Om() {
     return (
         <main>
@@ -62,7 +64,7 @@ const people: Array<Person> = [
         name: 'Alexander Gimerus',
         role: 'Initiativtagare och bollplank till denna applikation',
         gitHubUrl: '',
-        imageUrl: 'alexander-avatar.jpg',
+        imageUrl: publicAsset('alexander-avatar.jpg'),
     },
     {
         name: 'Daria Lykova',
@@ -72,7 +74,7 @@ const people: Array<Person> = [
     },
     {
         name: 'Marcus Holmgren',
-        role: 'Design och vidareutveckling med upprepade dyk för denna Remix SPA',
+        role: 'Design och vidareutveckling med upprepade dyk för denna SPA',
         gitHubUrl: 'https://github.com/marcusholmgren',
         imageUrl: 'https://avatars.githubusercontent.com/u/183957?v=4',
     },

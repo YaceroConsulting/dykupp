@@ -1,5 +1,6 @@
 import { expect, test, describe } from 'vitest'
-import { RepeatedDive, TwoDives } from './practice'
+import { RepeatedDive } from './practice'
+import type { TwoDives } from './practice'
 
 // test that given a start time add first dive time, the surface interval and start time for the second dive and the surface time for the second dive.
 // The resurface time is 2 minutes for each dive.

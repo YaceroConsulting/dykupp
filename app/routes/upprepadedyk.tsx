@@ -1,8 +1,9 @@
 import { Button } from '@headlessui/react'
-import { RepeatedDive, repeatedDives, TwoDives } from '~/practice'
+import { RepeatedDive, repeatedDives } from '~/practice'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import type { FormEvent } from 'react'
+import type { TwoDives } from '~/practice'
 import { AcademicCapIcon, ArrowPathIcon } from '@heroicons/react/20/solid'
 import { classNames } from '~/components/libs'
 import {
