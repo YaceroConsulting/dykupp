@@ -270,14 +270,14 @@ export default function UpprepadeDyk() {
                     </p>
                 </div>
                 <div className="grid grid-cols-6">
-                    <div className="bg-gradient-to-b from-orange-200 to-white flex flex-col justify-between">
+                    <div className="bg-linear-to-b from-orange-200 to-white flex flex-col justify-between">
                         🌞 Dykstart {timeFormat.format(question?.startTime)}
                         <div className="transform scale-x-[-1] self-center">
                             🛥️
                         </div>
                     </div>
-                    <div className="bg-gradient-to-b from-orange-200 to-white" />
-                    <div className="bg-gradient-to-b from-orange-200 to-white col-start-3 col-span-2">
+                    <div className="bg-linear-to-b from-orange-200 to-white" />
+                    <div className="bg-linear-to-b from-orange-200 to-white col-start-3 col-span-2">
                         <div className="flex justify-between p-3 ">
                             <div className="flex flex-col gap-y-6">
                                 Yta {timeFormat.format(question?.resurfaceTime)}
@@ -289,23 +289,23 @@ export default function UpprepadeDyk() {
                             <div className="flex flex-col gap-y-6">{q2El}</div>
                         </div>
                     </div>
-                    <div className="bg-gradient-to-b from-orange-200 to-white" />
-                    <div className="col-start-6 flex flex-col gap-y-6 p-3 bg-gradient-to-b from-orange-200 to-white">
+                    <div className="bg-linear-to-b from-orange-200 to-white" />
+                    <div className="col-start-6 flex flex-col gap-y-6 p-3 bg-linear-to-b from-orange-200 to-white">
                         {q4El}
                     </div>
                     {/* rad 2 */}
-                    <div className="bg-gradient-to-t from-blue-500 to-blue-300" />
-                    <div className="bg-gradient-to-t from-blue-500 to-blue-300 flex flex-col justify-end col-span-1">
+                    <div className="bg-linear-to-t from-blue-500 to-blue-300" />
+                    <div className="bg-linear-to-t from-blue-500 to-blue-300 flex flex-col justify-end col-span-1">
                         <div>{question.firstDiveTime} min</div>
                         <div>Djup {question.firstDiveDepth} m</div>
                     </div>
-                    <div className="bg-gradient-to-t from-blue-500 to-blue-300  flex flex-col justify-between p-4 col-span-2">
+                    <div className="bg-linear-to-t from-blue-500 to-blue-300  flex flex-col justify-between p-4 col-span-2">
                         <div className="self-end">🐠</div>
                         <div className="self-center scale-125">🐡</div>
                         <div className="self-start scale-150">🐟</div>
                     </div>
 
-                    <div className="bg-gradient-to-t from-blue-500 to-blue-300 col-start-5 col-span-2">
+                    <div className="bg-linear-to-t from-blue-500 to-blue-300 col-start-5 col-span-2">
                         {q3El}
                     </div>
                 </div>
@@ -313,7 +313,7 @@ export default function UpprepadeDyk() {
                 <div className="space-y-10 divide-y divide-gray-900/10">
                     <form
                         onSubmit={handleSubmit}
-                        className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2"
+                        className="bg-white shadow-xs ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2"
                     >
                         <div className="px-4 py-6 sm:p-8">
                             {progress.q1 ? null : (
@@ -371,7 +371,7 @@ export default function UpprepadeDyk() {
                                     <motion.button
                                         whileTap={{ scale: 0.9 }}
                                         type="submit"
-                                        className="rounded bg-indigo-600 py-2 px-4 text-sm text-white data-[hover]:bg-indgo-500 data-[active]:bg-indigo-700 flex gap-2 justify-between"
+                                        className="rounded-sm bg-indigo-600 py-2 px-4 text-sm text-white data-[hover]:bg-indgo-500 data-active:bg-indigo-700 flex gap-2 justify-between"
                                     >
                                         <ArrowPathIcon
                                             className="-ml-0.5 h-5 w-5"
@@ -385,7 +385,7 @@ export default function UpprepadeDyk() {
                                     {answerCorrectionEl}
                                     <Button
                                         type="submit"
-                                        className="rounded bg-indigo-600 py-2 px-4 text-sm text-white data-[hover]:bg-indgo-500 data-[active]:bg-indigo-700 w-40 flex justify-between"
+                                        className="rounded-sm bg-indigo-600 py-2 px-4 text-sm text-white data-[hover]:bg-indgo-500 data-active:bg-indigo-700 w-40 flex justify-between"
                                     >
                                         <AcademicCapIcon
                                             className="-ml-0.5 h-5 w-5"

@@ -83,7 +83,7 @@ export function DirektuppstigningQuiz({
                     enter="transition-opacity duration-1000"
                     enterFrom="opacity-0"
                     enterTo="opacity-100"
-                    leave="transition-opacity duration-[1400ms]"
+                    leave="transition-opacity duration-1400"
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
@@ -97,7 +97,7 @@ export function DirektuppstigningQuiz({
                         <motion.button
                             whileTap={{ scale: 0.9 }}
                             type="submit"
-                            className="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            className="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
                             <AcademicCapIcon
                                 className="-ml-0.5 h-5 w-5"

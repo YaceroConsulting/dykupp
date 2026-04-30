@@ -1,4 +1,5 @@
 import { vitePlugin as remix } from '@remix-run/dev'
+import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { copyFileSync } from 'node:fs'
@@ -7,7 +8,11 @@ import { join } from 'node:path'
 export default defineConfig({
     base: '/dykupp/',
     plugins: [
+        tailwindcss(),
         remix({
+            future: {
+                unstable_optimizeDeps: true,
+            },
             basename: '/dykupp/',
             ssr: false,
             buildEnd(args) {

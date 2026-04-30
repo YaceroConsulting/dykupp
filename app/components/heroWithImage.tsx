@@ -1,6 +1,6 @@
 export function HeroWithOffsetImage() {
     return (
-        <div className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20 pt-14">
+        <div className="relative isolate overflow-hidden bg-linear-to-b from-indigo-100/20 pt-14">
             <div
                 className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:-mr-80 lg:-mr-96"
                 aria-hidden="true"
@@ -24,11 +24,11 @@ export function HeroWithOffsetImage() {
                     <img
                         src="/dykupp/dykupp-start.jpg"
                         alt="Depths beckon, they call Kirby Morgan, trusted guide Exploring the deep"
-                        className="mt-10 aspect-[6/5] w-full max-w-lg rounded-2xl object-cover sm:mt-16 lg:mt-0 lg:max-w-none xl:row-span-2 xl:row-end-2 xl:mt-36"
+                        className="mt-10 aspect-6/5 w-full max-w-lg rounded-2xl object-cover sm:mt-16 lg:mt-0 lg:max-w-none xl:row-span-2 xl:row-end-2 xl:mt-36"
                     />
                 </div>
             </div>
-            <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-white sm:h-32" />
+            <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-linear-to-t from-white sm:h-32" />
         </div>
     )
 }
