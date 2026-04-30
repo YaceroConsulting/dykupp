@@ -1,8 +1,8 @@
 import { Button } from '@headlessui/react'
 import { RepeatedDive, repeatedDives, TwoDives } from '~/practice'
-import { ClientActionFunctionArgs, Form, useActionData } from '@remix-run/react'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import type { FormEvent } from 'react'
 import { AcademicCapIcon, ArrowPathIcon } from '@heroicons/react/20/solid'
 import { classNames } from '~/components/libs'
 import {
@@ -18,17 +18,16 @@ type Progress = {
     q4: boolean
 }
 
-export const clientAction = async ({
-    request,
-}: ClientActionFunctionArgs): Promise<{
+type RepeatedDiveAnswerResult = {
     q1?: boolean
     q2?: boolean
     q3?: boolean
     q4?: boolean
     correction?: string
     newQuestion?: TwoDives
-}> => {
-    const data = await request.formData()
+}
+
+const checkRepeatedDiveAnswer = (data: FormData): RepeatedDiveAnswerResult => {
 
     const groupAnswerCorrectFor = (name: string) =>
         String(data.get(`${name}-answer[name]`))
@@ -137,10 +136,10 @@ const NO_PROGRESS: Progress = {
 }
 
 export default function UpprepadeDyk() {
-    const answerResult = useActionData<typeof clientAction>()
     const [progress, setProgress] = useState<Progress>(NO_PROGRESS)
     const [question, setQuestion] = useState<RepeatedDive>()
     const [questions, setQuestions] = useState(Math.floor(Math.random() * 14))
+    const [answerResult, setAnswerResult] = useState<RepeatedDiveAnswerResult>()
 
     useEffect(() => {
         if (!question) {
@@ -161,6 +160,11 @@ export default function UpprepadeDyk() {
             }
         }
     }, [answerResult, question, questions])
+
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        setAnswerResult(checkRepeatedDiveAnswer(new FormData(event.currentTarget)))
+    }
 
     if (!question) {
         return <div>Laddar innehåll...</div>
@@ -307,8 +311,8 @@ export default function UpprepadeDyk() {
                 </div>
 
                 <div className="space-y-10 divide-y divide-gray-900/10">
-                    <Form
-                        method="POST"
+                    <form
+                        onSubmit={handleSubmit}
                         className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2"
                     >
                         <div className="px-4 py-6 sm:p-8">
@@ -392,7 +396,7 @@ export default function UpprepadeDyk() {
                                 </div>
                             )}
                         </div>
-                    </Form>
+                    </form>
                 </div>
             </div>
         )

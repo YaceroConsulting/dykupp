@@ -355,9 +355,13 @@ export class RepeatedDive {
         return this.data.maxRemaining.diveTimeAtDepth !== undefined
     }
 
-    get secondDiveMaxRemaining() {
+    get secondDiveMaxRemaining(): number {
         if (this.secondDiveMaxQuestion) {
-            return this.data.maxRemaining.diveTimeAtDepth
+            const diveTimeAtDepth = this.data.maxRemaining.diveTimeAtDepth
+            if (diveTimeAtDepth === undefined) {
+                throw new Error('diveTimeAtDepth is required for max dive questions')
+            }
+            return diveTimeAtDepth
         } else {
             return this.data.secondDive.time
         }

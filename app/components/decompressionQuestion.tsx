@@ -54,7 +54,6 @@ export function DecompressionQuestion({
                     </label>
                     <div className="mt-2 flex items-center gap-2">
                         <Input
-                            autoFocus
                             type="number"
                             min="1"
                             max="595"
@@ -156,7 +155,6 @@ export function MultilevelQuestion({ group, depth, diveTime }: QuestionProps) {
                     </label>
                     <div>
                         <Input
-                            autoFocus
                             type="number"
                             min="1"
                             max="595"

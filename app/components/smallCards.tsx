@@ -103,7 +103,7 @@ export function SmallCards({
 
 export function GroupCombobox({ name }: { name: string }) {
     const [query, setQuery] = useState('')
-    const [selectedGroup, setSelectedGroup] = useState(null)
+    const [selectedGroup, setSelectedGroup] = useState<GroupName | null>(null)
 
     const filteredPeople =
         query === ''
@@ -123,12 +123,11 @@ export function GroupCombobox({ name }: { name: string }) {
         >
             <div className="relative mt-2">
                 <ComboboxInput
-                    autoFocus
                     className="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     autoComplete="off"
                     onChange={(event) => setQuery(event.target.value)}
                     onBlur={() => setQuery('')}
-                    displayValue={(group) => group?.name}
+                    displayValue={(group: GroupName | null) => group?.name ?? ''}
                     required
                 />
                 <ComboboxButton className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">

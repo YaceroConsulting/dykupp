@@ -1,7 +1,7 @@
 import { DirektuppstigningQuiz } from '~/components/direktuppstigningQuiz'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import type { FormEvent } from 'react'
 import { checkDiveGroupAnswer, getDiveGroupQuestions } from '~/practice'
-import { ClientActionFunctionArgs, useActionData } from '@remix-run/react'
 import invariant from 'tiny-invariant'
 import type { MetaFunction } from '@remix-run/node'
 
@@ -15,15 +15,14 @@ export const meta: MetaFunction = () => {
         },
     ]
 }
-export const clientAction = async ({
-    request,
-}: ClientActionFunctionArgs): Promise<{
+const checkDirectDiveAnswer = (
+    formData: FormData
+): {
     correct: boolean
     answer: string
     depth?: number
     time?: number
-}> => {
-    const formData = await request.formData()
+} => {
     invariant(formData.has('depth'), 'depth is required')
     invariant(formData.has('time'), 'time is required')
     const groupAnswer = formData.get('groupAnswer') as string
@@ -43,12 +42,26 @@ export default function Direktuppstigning() {
     const [question, setQuestion] = useState(getDiveGroupQuestions())
     const [correct, setCorrect] = useState<string>('')
     const [incorrect, setIncorrect] = useState<string[]>([])
-    const data = useActionData<typeof clientAction>()
+    const nextQuestionTimeoutRef = useRef<number | null>(null)
 
     useEffect(() => {
-        if (data && data.correct && data.depth && data.time && data) {
+        return () => {
+            if (nextQuestionTimeoutRef.current !== null) {
+                window.clearTimeout(nextQuestionTimeoutRef.current)
+            }
+        }
+    }, [])
+
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+
+        const data = checkDirectDiveAnswer(new FormData(event.currentTarget))
+        if (data.correct && data.depth && data.time) {
             setCorrect(data.answer)
-            setTimeout(() => {
+            if (nextQuestionTimeoutRef.current) {
+                window.clearTimeout(nextQuestionTimeoutRef.current)
+            }
+            nextQuestionTimeoutRef.current = window.setTimeout(() => {
                 setIncorrect([])
                 setQuestion({
                     depth: Number(data.depth),
@@ -63,7 +76,7 @@ export default function Direktuppstigning() {
                 navigator.vibrate(100)
             }
         }
-    }, [data])
+    }
 
     return (
         <div className="py-16">
@@ -74,6 +87,7 @@ export default function Direktuppstigning() {
                             question={question}
                             correct={correct}
                             incorrect={incorrect}
+                            onSubmit={handleSubmit}
                         />
                     ) : null}
                 </div>

@@ -1,14 +1,15 @@
-import { Form } from '@remix-run/react'
 import { AcademicCapIcon } from '@heroicons/react/20/solid'
 import { SmallCards } from '~/components/smallCards'
 import { Transition } from '@headlessui/react'
 import { motion } from 'framer-motion'
 import { AnimatedDots } from '~/components/animatedDots'
+import type { FormEventHandler } from 'react'
 
 type DiveGroupPracticeProps = {
     question: GroupQuestion
     correct: string
     incorrect: string[]
+    onSubmit: FormEventHandler<HTMLFormElement>
 }
 
 type GroupQuestion = {
@@ -29,12 +30,13 @@ export function DirektuppstigningQuiz({
     question,
     correct,
     incorrect,
+    onSubmit,
 }: DiveGroupPracticeProps) {
     const showAnswer = correct !== ''
 
     return (
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <Form method="POST">
+            <form onSubmit={onSubmit}>
                 <div className="bg-white px-4 py-5 sm:px-6">
                     <h3
                         id="direktuppstigning"
@@ -105,7 +107,7 @@ export function DirektuppstigningQuiz({
                         </motion.button>
                     </div>
                 </Transition>
-            </Form>
+            </form>
         </div>
     )
 }
