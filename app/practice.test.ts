@@ -53,14 +53,14 @@ describe('dykning med direktuppstigning före ytintervall', () => {
     })
 
     test('direktuppstigning 32 m & 13 min -> group E', () => {
-        expect(checkDiveGroupAnswer(3, 57, 'A')).toBeTruthy()
+        expect(checkDiveGroupAnswer(32, 13, 'E')).toBeTruthy()
     })
 
-    test('direktuppstigning 48 m & 13 min -> group Q', () => {
+    test('direktuppstigning 48 m & 13 min -> ogiltigt', () => {
         expect(checkDiveGroupAnswer(48, 13, 'Q')).toBeFalsy()
     })
 
-    test('direktuppstining 7.5 m & 196 min -> group J', () => {
+    test('direktuppstigning 7.5 m & 196 min -> group J', () => {
         expect(checkDiveGroupAnswer(7.5, 196, 'J')).toBeTruthy()
     })
 

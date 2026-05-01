@@ -1,30 +1,30 @@
 {
     "name": "Dykning med direktuppstigning",
     "short_name": "direktuppstigning",
-    "scope": "/dykupp/",
-    "start_url": "/dykupp/",
+    "scope": "./",
+    "start_url": "./",
     "icons": [
         {
-            "src": "/dykupp/android-chrome-192x192.png",
+            "src": "android-chrome-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/dykupp/android-chrome-512x512.png",
+            "src": "android-chrome-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
     ],
     "screenshots": [
         {
-            "src": "/dykupp/desktop.jpg",
+            "src": "desktop.jpg",
             "sizes": "1212x638",
             "type": "image/jpg",
             "form_factor": "wide",
             "label": "Dykning med direktuppstigning"
         },
         {
-            "src": "/dykupp/mobile.jpg",
+            "src": "mobile.jpg",
             "sizes": "375x664",
             "type": "image/jpg",
             "form_factor": "narrow",

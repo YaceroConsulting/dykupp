@@ -1,14 +1,15 @@
-import { Form } from '@remix-run/react'
 import { AcademicCapIcon } from '@heroicons/react/20/solid'
 import { SmallCards } from '~/components/smallCards'
 import { Transition } from '@headlessui/react'
 import { motion } from 'framer-motion'
 import { AnimatedDots } from '~/components/animatedDots'
+import type { SubmitEventHandler } from 'react'
 
 type DiveGroupPracticeProps = {
     question: GroupQuestion
     correct: string
     incorrect: string[]
+    onSubmit: SubmitEventHandler<HTMLFormElement>
 }
 
 type GroupQuestion = {
@@ -29,12 +30,13 @@ export function DirektuppstigningQuiz({
     question,
     correct,
     incorrect,
+    onSubmit,
 }: DiveGroupPracticeProps) {
     const showAnswer = correct !== ''
 
     return (
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <Form method="POST">
+            <form onSubmit={onSubmit}>
                 <div className="bg-white px-4 py-5 sm:px-6">
                     <h3
                         id="direktuppstigning"
@@ -81,7 +83,7 @@ export function DirektuppstigningQuiz({
                     enter="transition-opacity duration-1000"
                     enterFrom="opacity-0"
                     enterTo="opacity-100"
-                    leave="transition-opacity duration-[1400ms]"
+                    leave="transition-opacity duration-1400"
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
@@ -91,11 +93,11 @@ export function DirektuppstigningQuiz({
                         correct={correct}
                         incorrect={incorrect}
                     />
-                    <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-3 mx-2 sm:mx-auto">
+                    <div className="mt-10 flex justify-center mx-2 sm:mx-auto">
                         <motion.button
                             whileTap={{ scale: 0.9 }}
                             type="submit"
-                            className="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            className="inline-flex items-center gap-x-1.5 rounded-md bg-primary px-lg py-md text-sm font-semibold text-white shadow-xs hover:opacity-90 transition-all active:scale-95 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary whitespace-nowrap w-fit"
                         >
                             <AcademicCapIcon
                                 className="-ml-0.5 h-5 w-5"
@@ -105,7 +107,7 @@ export function DirektuppstigningQuiz({
                         </motion.button>
                     </div>
                 </Transition>
-            </Form>
+            </form>
         </div>
     )
 }

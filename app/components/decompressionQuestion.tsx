@@ -1,4 +1,4 @@
-import { RemainingQuestion } from '~/practice'
+import type { RemainingQuestion } from '~/practice'
 import { useEffect, useState } from 'react'
 import { Input } from '@headlessui/react'
 import { classNames } from '~/components/libs'
@@ -54,7 +54,6 @@ export function DecompressionQuestion({
                     </label>
                     <div className="mt-2 flex items-center gap-2">
                         <Input
-                            autoFocus
                             type="number"
                             min="1"
                             max="595"
@@ -64,7 +63,7 @@ export function DecompressionQuestion({
                             onChange={(e) =>
                                 setMaxExposition(Number(e.target.value))
                             }
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
                         <strong className="pl-4 text-gray-800 text-xl">
                             -
@@ -89,7 +88,7 @@ export function DecompressionQuestion({
                             onChange={(e) =>
                                 setConsumed(Number(e.target.value))
                             }
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
                         <strong className="pl-4 text-gray-800 text-xl">
                             =
@@ -112,7 +111,7 @@ export function DecompressionQuestion({
                             readOnly
                             value={remaining}
                             className={classNames(
-                                'block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
+                                'block w-full rounded-md border-0 py-1.5 shadow-xs ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
                                 (remaining ?? 0) > -1 ? '' : 'text-red-800'
                             )}
                         />
@@ -156,14 +155,13 @@ export function MultilevelQuestion({ group, depth, diveTime }: QuestionProps) {
                     </label>
                     <div>
                         <Input
-                            autoFocus
                             type="number"
                             min="1"
                             max="595"
                             name="max-remaining-answer"
                             autoComplete="off"
                             required
-                            className="block w-36 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            className="block w-36 rounded-md border-0 py-1.5 text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
                     </div>
                 </div>
@@ -182,7 +180,7 @@ export function MultilevelQuestion({ group, depth, diveTime }: QuestionProps) {
                             name="consumed-exposition-answer"
                             autoComplete="off"
                             required
-                            className="block w-36 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            className="block w-36 rounded-md border-0 py-1.5 text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
                     </div>
                 </div>

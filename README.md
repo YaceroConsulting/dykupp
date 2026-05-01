@@ -2,17 +2,17 @@
 
 [![Build and deploy](https://github.com/YaceroConsulting/dykupp/actions/workflows/build-deploy.yml/badge.svg)](https://github.com/YaceroConsulting/dykupp/actions/workflows/build-deploy.yml)
 
-This template leverages [Remix SPA Mode](https://remix.run/docs/en/main/future/spa-mode) and
-the [Remix Vite Plugin](https://remix.run/docs/en/main/future/vite) to build your app as a Single-Page Application
-using [Client Data](https://remix.run/docs/en/main/guides/client-data) for all of your data loads and mutations.
+This application leverages [React Router Framework Mode](https://reactrouter.com/start/modes#framework)
+with [SPA Mode](https://reactrouter.com/how-to/spa) to build and deploy the app as a static Single-Page Application
+on GitHub Pages.
 
 Frontpage Haiku generated with the help of [PartyRock](https://partyrock.aws/u/partyrock/jAJQ4WYAS/Haiku-Creator)
 
 ## Roadmap
 
--   [x] Övning av gruppbeteckning efter dykning med direktuppstigning med maximal expositionstid samt
--   [x] Övning av upprepade dyk med direktuppstigning med direktuppstigning
--   [ ] Övning av upprepade dyk med olika djup (_multi-level diving_)
+- [x] Övning av gruppbeteckning efter dykning med direktuppstigning med maximal expositionstid samt
+- [x] Övning av upprepade dyk med direktuppstigning med direktuppstigning
+- [ ] Övning av upprepade dyk med olika djup (_multi-level diving_)
 
 ## Data
 
@@ -20,15 +20,16 @@ Data values for expositionstime are stored in JSON file. The data is extracted f
 The file below is described by the Swedish description from the original source table U.S. Navy Diving Manual (USN
 rev 6)
 
--   `expositionstid.json` - _Maximal expositionstid samt gruppbeteckning efter dykning med direktuppstigning_. Före
-    ytintervall.
+- `expositionstid.json` - _Maximal expositionstid samt gruppbeteckning efter dykning med direktuppstigning_. Före
+  ytintervall.
 - `app/practice.ts` contains function repeatedDives that have a list of repeated dive questions.
 
 **Repeate dives**
 
-There are two different questions that can be asked for the second dive. 
+There are two different questions that can be asked for the second dive.
 
 Ask the student to caclulate the maximum dive time for the second dive from the `maxRemaining` object.
+
 ```javascript
 {
         ...
@@ -44,6 +45,7 @@ Ask the student to caclulate the maximum dive time for the second dive from the 
 
 Ask the student to provide the maximum exposition time for the group and depth, and the consumed time.
 This is because the `maxRemaining` object does not contain the `diveTimeAtDepth` property.
+
 ```javascript
 {
     ...
@@ -55,7 +57,7 @@ This is because the `maxRemaining` object does not contain the `diveTimeAtDepth`
 
 ## Development
 
-You can develop your SPA app just like you would a normal Remix app, via:
+You can develop the app locally via:
 
 ```shellscript
 npm run dev
@@ -98,14 +100,13 @@ This application is deployed to GitHub Pages.
 
 To learn more about the technologies used in this site template, see the following resources:
 
--   [Remix](https://remix.run/docs/en/main/future/spa-mode) - SPA Mode
--   [Tailwind CSS](https://tailwindcss.com/docs) - the official Tailwind CSS documentation
--   [Headless UI](https://headlessui.dev) - the official Headless UI documentation
--   [React](https://react.dev) - the official React documentation
--   [clsx](https://github.com/lukeed/clsx) - the GitHub repo for the `clsx` helper
--   [Diver icons created by Skyclick](https://www.flaticon.com/free-icons/diver) - Flaticon
+- [React Router](https://reactrouter.com/how-to/spa) - Framework and SPA Mode
+- [Tailwind CSS](https://tailwindcss.com/docs) - the official Tailwind CSS documentation
+- [Headless UI](https://headlessui.dev) - the official Headless UI documentation
+- [React](https://react.dev) - the official React documentation
+- [clsx](https://github.com/lukeed/clsx) - the GitHub repo for the `clsx` helper
+- [Diver icons created by Skyclick](https://www.flaticon.com/free-icons/diver) - Flaticon
 
 Landing page image generated with DALL-E 3 OpenAI model.
 
 Prompt used: "An illustration of a helmeted commercial diver receiving oxygen from a tube from the surface portrayed underwater with a school of fish."
-

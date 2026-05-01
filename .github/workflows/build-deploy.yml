@@ -32,36 +32,51 @@ jobs:
               uses: actions/setup-node@v4
               with:
                   cache: npm
-                  cache-dependency-path: ./package.json
-                  node-version: 20
+                  cache-dependency-path: ./package-lock.json
+                  node-version: 22
 
             - name: 📥 Install deps
-              run: npm install
+              run: npm ci
 
             - name: ⚡ Run vitest
               run: npm run test
 
-    # Single deploy job since we're just deploying
     build-and-deploy:
+        name: 🚀 Build and Deploy
         needs: [vitest]
         environment:
             name: github-pages
             url: ${{ steps.deployment.outputs.page_url }}
         runs-on: ubuntu-latest
+        env:
+            # Dynamically set the base URL based on the repository name
+            # This allows forks to deploy correctly to their own GitHub Pages
+            VITE_BASE_URL: /${{ github.event.repository.name }}/
         steps:
-            - name: Checkout
+            - name: ⬇️ Checkout repo
               uses: actions/checkout@v4
-            - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-              run: |
-                  npm ci
-                  npm run build
-            - name: Setup Pages
+
+            - name: ⎔ Setup node
+              uses: actions/setup-node@v4
+              with:
+                  cache: npm
+                  cache-dependency-path: ./package-lock.json
+                  node-version: 22
+
+            - name: 📥 Install deps
+              run: npm ci
+
+            - name: 🔧 Build
+              run: npm run build
+
+            - name: 🌐 Setup Pages
               uses: actions/configure-pages@v5
-            - name: Upload artifact
+
+            - name: 📤 Upload artifact
               uses: actions/upload-pages-artifact@v3
               with:
-                  # Upload entire repository
                   path: 'build/client'
-            - name: Deploy to GitHub Pages
+
+            - name: 🚀 Deploy to GitHub Pages
               id: deployment
               uses: actions/deploy-pages@v4

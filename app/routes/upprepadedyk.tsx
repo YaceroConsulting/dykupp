@@ -1,8 +1,9 @@
 import { Button } from '@headlessui/react'
-import { RepeatedDive, repeatedDives, TwoDives } from '~/practice'
-import { ClientActionFunctionArgs, Form, useActionData } from '@remix-run/react'
+import { RepeatedDive, repeatedDives } from '~/practice'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import type { FormEvent } from 'react'
+import type { TwoDives } from '~/practice'
 import { AcademicCapIcon, ArrowPathIcon } from '@heroicons/react/20/solid'
 import { classNames } from '~/components/libs'
 import {
@@ -18,18 +19,16 @@ type Progress = {
     q4: boolean
 }
 
-export const clientAction = async ({
-    request,
-}: ClientActionFunctionArgs): Promise<{
+type RepeatedDiveAnswerResult = {
     q1?: boolean
     q2?: boolean
     q3?: boolean
     q4?: boolean
     correction?: string
     newQuestion?: TwoDives
-}> => {
-    const data = await request.formData()
+}
 
+const checkRepeatedDiveAnswer = (data: FormData): RepeatedDiveAnswerResult => {
     const groupAnswerCorrectFor = (name: string) =>
         String(data.get(`${name}-answer[name]`))
             .trim()
@@ -79,11 +78,11 @@ export const clientAction = async ({
         } else {
             return answerLow('remaining-exposition')
                 ? {
-                      correction: `Max kvarvarande expositionstid ${data.get('remaining-exposition-answer')} minuter är för låg`,
-                  }
+                    correction: `Max kvarvarande expositionstid ${data.get('remaining-exposition-answer')} minuter är för låg`,
+                }
                 : {
-                      correction: `Max kvarvarande expositionstid ${data.get('remaining-exposition-answer')} minuter är för hög`,
-                  }
+                    correction: `Max kvarvarande expositionstid ${data.get('remaining-exposition-answer')} minuter är för hög`,
+                }
         }
     } else if (data.has('max-remaining')) {
         const answerCorrect = (name: string) =>
@@ -137,10 +136,10 @@ const NO_PROGRESS: Progress = {
 }
 
 export default function UpprepadeDyk() {
-    const answerResult = useActionData<typeof clientAction>()
     const [progress, setProgress] = useState<Progress>(NO_PROGRESS)
     const [question, setQuestion] = useState<RepeatedDive>()
     const [questions, setQuestions] = useState(Math.floor(Math.random() * 14))
+    const [answerResult, setAnswerResult] = useState<RepeatedDiveAnswerResult>()
 
     useEffect(() => {
         if (!question) {
@@ -161,6 +160,13 @@ export default function UpprepadeDyk() {
             }
         }
     }, [answerResult, question, questions])
+
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        setAnswerResult(
+            checkRepeatedDiveAnswer(new FormData(event.currentTarget))
+        )
+    }
 
     if (!question) {
         return <div>Laddar innehåll...</div>
@@ -237,9 +243,9 @@ export default function UpprepadeDyk() {
                 className={classNames(
                     'min-w-10 flex h-full',
                     progress.q1 &&
-                        progress.q2 &&
-                        progress.q3 &&
-                        'animate-bounce'
+                    progress.q2 &&
+                    progress.q3 &&
+                    'animate-bounce'
                 )}
             >
                 <strong className="content-end">?</strong>
@@ -266,14 +272,14 @@ export default function UpprepadeDyk() {
                     </p>
                 </div>
                 <div className="grid grid-cols-6">
-                    <div className="bg-gradient-to-b from-orange-200 to-white flex flex-col justify-between">
+                    <div className="bg-linear-to-b from-orange-200 to-white flex flex-col justify-between">
                         🌞 Dykstart {timeFormat.format(question?.startTime)}
                         <div className="transform scale-x-[-1] self-center">
                             🛥️
                         </div>
                     </div>
-                    <div className="bg-gradient-to-b from-orange-200 to-white" />
-                    <div className="bg-gradient-to-b from-orange-200 to-white col-start-3 col-span-2">
+                    <div className="bg-linear-to-b from-orange-200 to-white" />
+                    <div className="bg-linear-to-b from-orange-200 to-white col-start-3 col-span-2">
                         <div className="flex justify-between p-3 ">
                             <div className="flex flex-col gap-y-6">
                                 Yta {timeFormat.format(question?.resurfaceTime)}
@@ -285,31 +291,31 @@ export default function UpprepadeDyk() {
                             <div className="flex flex-col gap-y-6">{q2El}</div>
                         </div>
                     </div>
-                    <div className="bg-gradient-to-b from-orange-200 to-white" />
-                    <div className="col-start-6 flex flex-col gap-y-6 p-3 bg-gradient-to-b from-orange-200 to-white">
+                    <div className="bg-linear-to-b from-orange-200 to-white" />
+                    <div className="col-start-6 flex flex-col gap-y-6 p-3 bg-linear-to-b from-orange-200 to-white">
                         {q4El}
                     </div>
                     {/* rad 2 */}
-                    <div className="bg-gradient-to-t from-blue-500 to-blue-300" />
-                    <div className="bg-gradient-to-t from-blue-500 to-blue-300 flex flex-col justify-end col-span-1">
+                    <div className="bg-linear-to-t from-blue-500 to-blue-300" />
+                    <div className="bg-linear-to-t from-blue-500 to-blue-300 flex flex-col justify-end col-span-1">
                         <div>{question.firstDiveTime} min</div>
                         <div>Djup {question.firstDiveDepth} m</div>
                     </div>
-                    <div className="bg-gradient-to-t from-blue-500 to-blue-300  flex flex-col justify-between p-4 col-span-2">
+                    <div className="bg-linear-to-t from-blue-500 to-blue-300  flex flex-col justify-between p-4 col-span-2">
                         <div className="self-end">🐠</div>
                         <div className="self-center scale-125">🐡</div>
                         <div className="self-start scale-150">🐟</div>
                     </div>
 
-                    <div className="bg-gradient-to-t from-blue-500 to-blue-300 col-start-5 col-span-2">
+                    <div className="bg-linear-to-t from-blue-500 to-blue-300 col-start-5 col-span-2">
                         {q3El}
                     </div>
                 </div>
 
                 <div className="space-y-10 divide-y divide-gray-900/10">
-                    <Form
-                        method="POST"
-                        className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2"
+                    <form
+                        onSubmit={handleSubmit}
+                        className="bg-white shadow-xs ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2"
                     >
                         <div className="px-4 py-6 sm:p-8">
                             {progress.q1 ? null : (
@@ -344,9 +350,9 @@ export default function UpprepadeDyk() {
                                 )
                             ) : null}
                             {progress.q1 &&
-                            progress.q2 &&
-                            progress.q3 &&
-                            !progress.q4 ? (
+                                progress.q2 &&
+                                progress.q3 &&
+                                !progress.q4 ? (
                                 <GroupQuestion
                                     answer={question.secondResurfaceGroup}
                                     name="fourth-group"
@@ -367,7 +373,7 @@ export default function UpprepadeDyk() {
                                     <motion.button
                                         whileTap={{ scale: 0.9 }}
                                         type="submit"
-                                        className="rounded bg-indigo-600 py-2 px-4 text-sm text-white data-[hover]:bg-indgo-500 data-[active]:bg-indigo-700 flex gap-2 justify-between"
+                                        className="rounded-sm bg-indigo-600 py-2 px-4 text-sm text-white data-[hover]:bg-indgo-500 data-active:bg-indigo-700 flex gap-2 justify-between"
                                     >
                                         <ArrowPathIcon
                                             className="-ml-0.5 h-5 w-5"
@@ -379,20 +385,21 @@ export default function UpprepadeDyk() {
                             ) : (
                                 <div className="mt-3">
                                     {answerCorrectionEl}
-                                    <Button
+                                    <motion.button
+                                        whileTap={{ scale: 0.9 }}
                                         type="submit"
-                                        className="rounded bg-indigo-600 py-2 px-4 text-sm text-white data-[hover]:bg-indgo-500 data-[active]:bg-indigo-700 w-40 flex justify-between"
+                                        className="inline-flex items-center gap-x-1.5 rounded-md bg-primary px-lg py-md text-sm font-semibold text-white shadow-xs hover:opacity-90 transition-all active:scale-95 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary whitespace-nowrap w-fit"
                                     >
                                         <AcademicCapIcon
                                             className="-ml-0.5 h-5 w-5"
                                             aria-hidden="true"
                                         />
                                         Kontrollera svar
-                                    </Button>
+                                    </motion.button>
                                 </div>
                             )}
                         </div>
-                    </Form>
+                    </form>
                 </div>
             </div>
         )
