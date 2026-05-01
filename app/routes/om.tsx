@@ -1,3 +1,4 @@
+import { Footer } from '~/components/footer'
 import { publicAsset } from '~/components/libs'
 
 export default function Om() {
@@ -22,6 +23,10 @@ export default function Om() {
                         <Flaticon />
                     </div>
                 </div>
+            </div>
+
+            <div className="bg-white px-6 pb-24 lg:px-8">
+                <Footer />
             </div>
         </main>
     )
