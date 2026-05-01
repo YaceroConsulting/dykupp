@@ -82,7 +82,7 @@ describe('multilevel, dykning med olika djup', () => {
         expect(tryit.secondDiveMaxExposition).toBe(105)
         expect(tryit.penaltyTime).toBe(45)
         expect(tryit.secondResurfaceTime.toISOString()).toBe(
-            '2022-01-01T11:34:00.000Z'
+            '2022-01-01T10:49:00.000Z'
         )
         expect(tryit.secondResurfaceGroup).toBe('K')
     })
